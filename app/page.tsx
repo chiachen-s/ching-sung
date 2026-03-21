@@ -1,3 +1,4 @@
+export const revalidate = 60
 import Link from 'next/link'
 import { ArrowRight, Leaf, BookOpen, ShoppingBasket, MessageCircle } from 'lucide-react'
 import { mockArticles, mockProducts } from '@/lib/mock-data'

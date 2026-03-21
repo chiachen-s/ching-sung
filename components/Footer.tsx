@@ -42,13 +42,13 @@ export default function Footer() {
             <h3 className="font-semibold mb-4 text-brand-green-bright">聯絡方式</h3>
             <div className="space-y-3">
               <a
-                href="https://instagram.com/chingsung.farm"
+                href="https://instagram.com/chingsungfarm"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-white/70 hover:text-white transition-colors text-sm"
               >
                 <Instagram className="w-4 h-4" />
-                @chingsung.farm
+                @chingsungfarm
               </a>
               <a
                 href="mailto:chingsung.farm@gmail.com"

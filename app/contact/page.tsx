@@ -37,21 +37,21 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* QR Code placeholder */}
-              <div className="aspect-square max-w-[200px] mx-auto bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl flex items-center justify-center mb-6">
-                <div className="text-center text-gray-300 p-4">
-                  <div className="w-16 h-16 border-2 border-gray-200 rounded mx-auto mb-2 flex items-center justify-center">
-                    <span className="text-2xl">QR</span>
-                  </div>
-                  <p className="text-xs">LINE QR Code</p>
-                  <p className="text-xs mt-0.5">（待上傳）</p>
-                </div>
+              {/* QR Code */}
+              <div className="max-w-[200px] mx-auto mb-6">
+                <img
+                  src="https://qr-official.line.me/gs/M_994sdzus_BW.png?oat_content=qr"
+                  alt="青Sung LINE 官方帳號 QR Code"
+                  className="w-full rounded-2xl"
+                />
               </div>
 
               <div className="text-center space-y-3">
                 <p className="text-gray-600 text-sm">掃描 QR Code 加入好友</p>
                 <a
-                  href="#"
+                  href="https://line.me/R/ti/p/@994sdzus"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-primary block w-full text-center bg-[#06C755] hover:bg-[#05B34A]"
                 >
                   點此加入 LINE
@@ -92,12 +92,12 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <a
-                  href="https://instagram.com/chingsung.farm"
+                  href="https://instagram.com/chingsungfarm"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between text-sm text-brand-green font-medium hover:underline"
                 >
-                  @chingsung.farm
+                  @chingsungfarm
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>

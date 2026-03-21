@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+export const revalidate = 60
 import { getProducts } from '@/lib/sanity'
 import { mockProducts } from '@/lib/mock-data'
 import ProductCard from '@/components/ProductCard'
