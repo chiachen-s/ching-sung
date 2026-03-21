@@ -14,10 +14,11 @@ export default defineConfig({
         S.list()
           .title('內容管理')
           .items([
-            S.listItem().title('農產品').schemaType('product').child(S.documentTypeList('product')),
-            S.listItem().title('農業知識文章').schemaType('article').child(S.documentTypeList('article')),
+            S.listItem().id('product').title('農產品').schemaType('product').child(S.documentTypeList('product')),
+            S.listItem().id('article').title('農業知識文章').schemaType('article').child(S.documentTypeList('article')),
             S.divider(),
             S.listItem()
+              .id('siteSettings')
               .title('網站設定')
               .child(S.document().schemaType('siteSettings').documentId('siteSettings')),
           ]),

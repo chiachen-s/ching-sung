@@ -9,12 +9,6 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/logo.png"
-                alt="青Sung Logo"
-                style={{ height: 36, width: 'auto' }}
-              />
               <span className="font-serif font-bold text-xl">青Sung</span>
             </div>
             <p className="text-white/70 text-sm leading-relaxed">
