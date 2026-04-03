@@ -107,8 +107,8 @@ export default async function ProductPage({ params }: Props) {
               ))}
             </div>
 
-            {/* CTA */}
-            {product.status === 'available' && product.orderLink ? (
+            {/* Only allow http/https to prevent javascript: injection */}
+            {product.status === 'available' && product.orderLink && /^https?:\/\//.test(product.orderLink) ? (
               <a
                 href={product.orderLink}
                 target="_blank"

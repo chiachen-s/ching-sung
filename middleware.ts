@@ -1,4 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { timingSafeEqual } from 'crypto'
+
+function safeCompare(a: string, b: string): boolean {
+  const bufA = Buffer.from(a)
+  const bufB = Buffer.from(b)
+  return bufA.length === bufB.length && timingSafeEqual(bufA, bufB)
+}
 
 export function middleware(request: NextRequest) {
   const authHeader = request.headers.get('authorization')
@@ -11,7 +18,7 @@ export function middleware(request: NextRequest) {
     const validUser = process.env.STUDIO_USERNAME
     const validPass = process.env.STUDIO_PASSWORD
 
-    if (validUser && validPass && user === validUser && pass === validPass) {
+    if (validUser && validPass && safeCompare(user, validUser) && safeCompare(pass, validPass)) {
       return NextResponse.next()
     }
   }
