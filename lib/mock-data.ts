@@ -1,5 +1,8 @@
 import type { Article, Product, SiteSettings } from '@/types'
 
+// TEMPORARY: intentional type error to verify CI blocks broken PRs (Phase 0 verification, to be reverted)
+const __ciVerificationTypeError: number = 'this should be a number'
+
 export const mockArticles: Article[] = [
   {
     _id: '1',
