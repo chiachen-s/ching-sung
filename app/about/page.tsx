@@ -19,6 +19,9 @@ export default function AboutPage() {
           <h1 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">
             青Sung 的故事
           </h1>
+          <p className="text-white/90 text-xl md:text-2xl font-serif mb-3">
+            青Sung，就像年輕的我。
+          </p>
           <p className="text-white/75 text-lg max-w-2xl mx-auto leading-relaxed">
             一個青年返鄉的決定，一段與土地重新對話的旅程。
           </p>
@@ -39,12 +42,13 @@ export default function AboutPage() {
               </div>
               <h2 className="font-serif text-2xl font-bold text-brand-green mb-4">家族的根，土地的情</h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                阿爸從年輕就開始種田，種了一輩子。每天凌晨三點出門，天黑才回來，
-                用汗水換來的是波動的收購價格和逐漸彎曲的脊背。
+                因為疫情，帶團的工作受影響，比較沒有團可以出，我們才比較有空回家。
+                有一次八點多到家，爸媽才剛要吃飯，桌上簡單一兩道菜。
               </p>
               <p className="text-gray-600 leading-relaxed">
-                農業是這塊土地最根本的事，但農民卻往往是最辛苦、最不被重視的人。
-                這件事，從小就刻在心裡。
+                隔了一個月再回去，一樣是八點多，家裡卻沒有人，還在田裡忙。
+                那時候才知道，原來爸媽都工作到那麼晚，很辛苦，自己沒在家陪他們，
+                三餐就這樣隨便解決，日子一天一天這樣過去。
               </p>
             </div>
             <div className="aspect-square bg-gradient-to-br from-brand-green-pale to-brand-green/20 rounded-2xl flex items-center justify-center">
@@ -71,13 +75,19 @@ export default function AboutPage() {
               </div>
               <h2 className="font-serif text-2xl font-bold text-brand-green mb-4">帶著目的回來</h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                在都市工作幾年後，心裡的問題越來越清晰：
-                如果帶著在外面學到的東西回去，用不同的方法幫家人種田，
-                事情會不會有所不同？
+                就這樣決定回來，陪在爸媽身邊。爸媽卻都反對，要我到外面找更好的工作，
+                因為知道種田辛苦，不想要兒子這麼累，走他們走過的路。
+                一開始回來很挫折，第一年，爸媽在旁邊看著，結果還是不好，價格也不好，
+                被盤商打槍，心情很低落，爸媽看了捨不得，時不時就說不要種了。
+                第二年，爸媽放手讓我自己做，結果更糟，什麼都得自己扛，踩了很多雷，真的很想放棄。
               </p>
               <p className="text-gray-600 leading-relaxed">
-                於是回來了。不是逃跑，而是帶著目的回來。
-                用植保機減少農藥、用科技記錄農事、用網路讓更多人認識我們種的食物。
+                大約在2019年快進入2020年的時候，開始種田。起初大一上學期念完，大一下學期轉讀夜校。
+                每天一早天亮就趕忙工作，下午四五點趕快開車去上學，上到九點多，常常沒空吃晚餐，
+                開車開到打瞌睡，有時候直接睡在路邊，有時候到家了，車沒熄火、燈也沒關，
+                就在車上睡著，被爸爸敲車窗才醒過來。只撐了一學期，真的受不了了。
+                後來為了想開一間農業行、需要考農藥牌，又去讀了北科大學分班、中科大假日班，
+                一路念到2025年6月才畢業。
               </p>
             </div>
           </div>
@@ -91,7 +101,7 @@ export default function AboutPage() {
               <h2 className="font-serif text-2xl font-bold text-brand-green mb-4">青Sung 的現在</h2>
               <p className="text-gray-600 leading-relaxed mb-4">
                 現在，青Sung 是一個家族一起經營的農業品牌。
-                阿爸負責農事技術，我們負責科技、行銷、內容。
+                爸爸負責農事技術，我們負責科技、行銷、內容。
                 傳統農業的智慧，加上新世代的工具，我們相信能走出不一樣的路。
               </p>
               <p className="text-gray-600 leading-relaxed">
@@ -106,6 +116,22 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Vision */}
+      <section className="py-16 bg-brand-green-pale">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <h2 className="section-title mb-8">我們的願景</h2>
+          <p className="text-gray-600 leading-relaxed mb-4">
+            以現在的環境，要做到有機無毒，農夫需要花很高的成本，而這些成本，
+            最後往往會轉嫁到消費者身上，不一定人人都負擔得起。
+            所以我們想做的，是讓大家能用合理的價格，吃到安全、新鮮、好吃的農產品。
+          </p>
+          <p className="text-gray-600 leading-relaxed">
+            同時，也希望種田的人，能用比較輕鬆的方式，好好地生活下去。
+            這是我們轉型的原因，也是青Sung 想一直走下去的路。
+          </p>
         </div>
       </section>
 
