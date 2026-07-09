@@ -1,6 +1,7 @@
 import { createClient } from 'next-sanity'
 import imageUrlBuilder from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import type { SiteSettings } from '@/types'
 
 export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
@@ -50,10 +51,16 @@ export async function getProductBySlug(slug: string) {
   )
 }
 
-export async function getSiteSettings() {
-  return client.fetch(
-    `*[_type == "siteSettings"][0] {
-      slogan, phone, address, serviceArea, instagramUrl, lineQrCode
-    }`
-  )
+export async function getSiteSettings(): Promise<SiteSettings | null> {
+  try {
+    return await client.fetch(
+      `*[_type == "siteSettings"][0] {
+        slogan, phone, address, serviceArea, instagramUrl, lineQrCode,
+        homeStoryImage, aboutStoryImage1, aboutStoryImage2, aboutStoryImage3, aboutGallery
+      }`
+    )
+  } catch (err) {
+    console.error('[getSiteSettings] Sanity 查詢失敗:', err)
+    return null
+  }
 }

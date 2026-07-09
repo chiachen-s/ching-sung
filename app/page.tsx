@@ -1,13 +1,16 @@
 export const revalidate = 60
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, Leaf, BookOpen, ShoppingBasket, MessageCircle } from 'lucide-react'
 import { mockArticles, mockProducts } from '@/lib/mock-data'
+import { getSiteSettings, urlFor } from '@/lib/sanity'
 import ArticleCard from '@/components/ArticleCard'
 import ProductCard from '@/components/ProductCard'
 
-export default function HomePage() {
+export default async function HomePage() {
   const latestArticles = mockArticles.slice(0, 3)
   const featuredProducts = mockProducts.slice(0, 3)
+  const settings = await getSiteSettings()
 
   return (
     <div>
@@ -106,13 +109,22 @@ export default function HomePage() {
               </Link>
             </div>
             <div className="relative">
-              {/* Placeholder for farm photo */}
               <div className="aspect-[4/3] bg-gradient-to-br from-brand-green-pale to-brand-green/20 rounded-2xl flex items-center justify-center overflow-hidden">
-                <div className="text-center text-brand-green/50 p-8">
-                  <Leaf className="w-16 h-16 mx-auto mb-4 opacity-40" />
-                  <p className="text-sm">農場實景照片</p>
-                  <p className="text-xs mt-1">（待上傳）</p>
-                </div>
+                {settings?.homeStoryImage ? (
+                  <Image
+                    src={urlFor(settings.homeStoryImage).width(800).height(600).url()}
+                    alt="農場實景照片"
+                    width={800}
+                    height={600}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="text-center text-brand-green/50 p-8">
+                    <Leaf className="w-16 h-16 mx-auto mb-4 opacity-40" />
+                    <p className="text-sm">農場實景照片</p>
+                    <p className="text-xs mt-1">（待上傳）</p>
+                  </div>
+                )}
               </div>
               <div className="absolute -bottom-4 -right-4 bg-brand-green-bright text-white rounded-2xl px-5 py-3 shadow-lg">
                 <p className="font-serif font-bold text-lg">友善耕作</p>
