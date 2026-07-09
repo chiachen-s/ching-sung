@@ -1,12 +1,16 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { Leaf, Heart, Sprout, Users } from 'lucide-react'
+import { getSiteSettings, urlFor } from '@/lib/sanity'
 
 export const metadata: Metadata = {
   title: '青Sung 故事',
   description: '青年返鄉種田的故事，家族農業的傳承與創新，友善耕作的理念。',
 }
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const settings = await getSiteSettings()
+
   return (
     <div>
       {/* Hero */}
@@ -51,23 +55,43 @@ export default function AboutPage() {
                 三餐就這樣隨便解決，日子一天一天這樣過去。
               </p>
             </div>
-            <div className="aspect-square bg-gradient-to-br from-brand-green-pale to-brand-green/20 rounded-2xl flex items-center justify-center">
-              <div className="text-center text-brand-green/40 p-8">
-                <Leaf className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                <p className="text-sm">家族農場照片</p>
-                <p className="text-xs mt-1">（待上傳）</p>
-              </div>
+            <div className="aspect-square bg-gradient-to-br from-brand-green-pale to-brand-green/20 rounded-2xl flex items-center justify-center overflow-hidden">
+              {settings?.aboutStoryImage1 ? (
+                <Image
+                  src={urlFor(settings.aboutStoryImage1).width(700).height(700).url()}
+                  alt="家族農場照片"
+                  width={700}
+                  height={700}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="text-center text-brand-green/40 p-8">
+                  <Leaf className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                  <p className="text-sm">家族農場照片</p>
+                  <p className="text-xs mt-1">（待上傳）</p>
+                </div>
+              )}
             </div>
           </div>
 
           {/* Story block 2 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
-            <div className="order-2 md:order-1 aspect-square bg-gradient-to-br from-brand-green-bright/10 to-brand-green-pale rounded-2xl flex items-center justify-center">
-              <div className="text-center text-brand-green/40 p-8">
-                <Sprout className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                <p className="text-sm">返鄉工作照片</p>
-                <p className="text-xs mt-1">（待上傳）</p>
-              </div>
+            <div className="order-2 md:order-1 aspect-square bg-gradient-to-br from-brand-green-bright/10 to-brand-green-pale rounded-2xl flex items-center justify-center overflow-hidden">
+              {settings?.aboutStoryImage2 ? (
+                <Image
+                  src={urlFor(settings.aboutStoryImage2).width(700).height(700).url()}
+                  alt="返鄉工作照片"
+                  width={700}
+                  height={700}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="text-center text-brand-green/40 p-8">
+                  <Sprout className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                  <p className="text-sm">返鄉工作照片</p>
+                  <p className="text-xs mt-1">（待上傳）</p>
+                </div>
+              )}
             </div>
             <div className="order-1 md:order-2">
               <div className="w-10 h-10 bg-brand-green-pale rounded-xl flex items-center justify-center text-brand-green mb-4">
@@ -109,12 +133,22 @@ export default function AboutPage() {
                 每次客人說「這個菜好好吃」，就覺得這一切值得了。
               </p>
             </div>
-            <div className="aspect-square bg-gradient-to-br from-brand-green/10 to-brand-green-bright/10 rounded-2xl flex items-center justify-center">
-              <div className="text-center text-brand-green/40 p-8">
-                <Users className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                <p className="text-sm">家人合照</p>
-                <p className="text-xs mt-1">（待上傳）</p>
-              </div>
+            <div className="aspect-square bg-gradient-to-br from-brand-green/10 to-brand-green-bright/10 rounded-2xl flex items-center justify-center overflow-hidden">
+              {settings?.aboutStoryImage3 ? (
+                <Image
+                  src={urlFor(settings.aboutStoryImage3).width(700).height(700).url()}
+                  alt="家人合照"
+                  width={700}
+                  height={700}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="text-center text-brand-green/40 p-8">
+                  <Users className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                  <p className="text-sm">家人合照</p>
+                  <p className="text-xs mt-1">（待上傳）</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -184,21 +218,35 @@ export default function AboutPage() {
             <p className="section-subtitle">農場的每一天，都是最真實的生活。</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div
-                key={i}
-                className={`bg-gradient-to-br from-brand-green-pale to-brand-green/10 rounded-xl flex items-center justify-center ${
-                  i === 0 ? 'col-span-2 row-span-2 aspect-square' : 'aspect-square'
-                }`}
-              >
-                <div className="text-center text-brand-green/30 p-4">
-                  <Leaf className="w-8 h-8 mx-auto mb-1 opacity-40" />
-                  <p className="text-xs">照片 {i + 1}</p>
+            {Array.from({ length: 8 }).map((_, i) => {
+              const img = settings?.aboutGallery?.[i]
+              return (
+                <div
+                  key={i}
+                  className={`relative bg-gradient-to-br from-brand-green-pale to-brand-green/10 rounded-xl flex items-center justify-center overflow-hidden ${
+                    i === 0 ? 'col-span-2 row-span-2 aspect-square' : 'aspect-square'
+                  }`}
+                >
+                  {img ? (
+                    <Image
+                      src={urlFor(img).width(600).height(600).url()}
+                      alt={`田間生活照片 ${i + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="text-center text-brand-green/30 p-4">
+                      <Leaf className="w-8 h-8 mx-auto mb-1 opacity-40" />
+                      <p className="text-xs">照片 {i + 1}</p>
+                    </div>
+                  )}
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
-          <p className="text-center text-gray-400 text-sm mt-4">農場照片整理中，敬請期待 🌾</p>
+          {!settings?.aboutGallery?.length && (
+            <p className="text-center text-gray-400 text-sm mt-4">農場照片整理中，敬請期待 🌾</p>
+          )}
         </div>
       </section>
     </div>

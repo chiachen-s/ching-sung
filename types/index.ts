@@ -1,3 +1,5 @@
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
+
 export interface Article {
   _id: string
   title: string
@@ -30,6 +32,11 @@ export interface SiteSettings {
   address?: string
   serviceArea?: string
   slogan?: string
+  homeStoryImage?: SanityImageSource
+  aboutStoryImage1?: SanityImageSource
+  aboutStoryImage2?: SanityImageSource
+  aboutStoryImage3?: SanityImageSource
+  aboutGallery?: SanityImageSource[]
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
