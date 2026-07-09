@@ -1,10 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { timingSafeEqual } from 'crypto'
 
 function safeCompare(a: string, b: string): boolean {
-  const bufA = Buffer.from(a)
-  const bufB = Buffer.from(b)
-  return bufA.length === bufB.length && timingSafeEqual(bufA, bufB)
+  const bufA = new TextEncoder().encode(a)
+  const bufB = new TextEncoder().encode(b)
+  if (bufA.length !== bufB.length) return false
+  let result = 0
+  for (let i = 0; i < bufA.length; i++) {
+    result |= bufA[i] ^ bufB[i]
+  }
+  return result === 0
 }
 
 export function middleware(request: NextRequest) {
