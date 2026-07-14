@@ -19,7 +19,7 @@ export function urlFor(source: SanityImageSource) {
 
 export async function getArticles() {
   return client.fetch(
-    `*[_type == "article"] | order(publishedAt desc) {
+    `*[_type == "article" && hidden != true] | order(publishedAt desc) {
       _id, title, "slug": slug.current, category, publishedAt, excerpt, coverImage
     }`
   )
@@ -27,7 +27,7 @@ export async function getArticles() {
 
 export async function getArticleBySlug(slug: string) {
   return client.fetch(
-    `*[_type == "article" && slug.current == $slug][0] {
+    `*[_type == "article" && slug.current == $slug && hidden != true][0] {
       _id, title, "slug": slug.current, category, publishedAt, excerpt, coverImage, body
     }`,
     { slug }
@@ -36,7 +36,7 @@ export async function getArticleBySlug(slug: string) {
 
 export async function getProducts() {
   return client.fetch(
-    `*[_type == "product"] | order(_createdAt asc) {
+    `*[_type == "product" && hidden != true] | order(_createdAt asc) {
       _id, name, "slug": slug.current, category, status, seasons, excerpt, coverImage
     }`
   )
@@ -44,7 +44,7 @@ export async function getProducts() {
 
 export async function getProductBySlug(slug: string) {
   return client.fetch(
-    `*[_type == "product" && slug.current == $slug][0] {
+    `*[_type == "product" && slug.current == $slug && hidden != true][0] {
       _id, name, "slug": slug.current, category, status, seasons, excerpt, coverImage, description, orderLink
     }`,
     { slug }

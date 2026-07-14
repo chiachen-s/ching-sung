@@ -66,13 +66,19 @@ export const article = defineType({
         { type: 'image', options: { hotspot: true } },
       ],
     }),
+    defineField({
+      name: 'hidden',
+      title: '隱藏此篇文章（前台將不會顯示）',
+      type: 'boolean',
+      initialValue: false,
+    }),
   ],
   orderings: [{ title: '發布日期（新→舊）', name: 'publishedAtDesc', by: [{ field: 'publishedAt', direction: 'desc' }] }],
   preview: {
-    select: { title: 'title', subtitle: 'category', media: 'coverImage' },
-    prepare({ title, subtitle }) {
+    select: { title: 'title', subtitle: 'category', media: 'coverImage', hidden: 'hidden' },
+    prepare({ title, subtitle, hidden }) {
       const labels: Record<string, string> = { farming: '種植知識', solar_term: '節氣與農作', recipe: '食譜料理', diary: '農場日誌' }
-      return { title, subtitle: labels[subtitle] || subtitle }
+      return { title, subtitle: hidden ? `🙈 已隱藏・${labels[subtitle] || subtitle}` : labels[subtitle] || subtitle }
     },
   },
 })
