@@ -81,12 +81,18 @@ export const product = defineType({
       title: '訂購連結（選填，留空則顯示聯絡按鈕）',
       type: 'url',
     }),
+    defineField({
+      name: 'hidden',
+      title: '隱藏此項商品（前台將不會顯示）',
+      type: 'boolean',
+      initialValue: false,
+    }),
   ],
   preview: {
-    select: { title: 'name', subtitle: 'status', media: 'coverImage' },
-    prepare({ title, subtitle }) {
+    select: { title: 'name', subtitle: 'status', media: 'coverImage', hidden: 'hidden' },
+    prepare({ title, subtitle, hidden }) {
       const labels: Record<string, string> = { available: '✅ 供應中', soldout: '❌ 已售完', coming_soon: '⏳ 即將上市' }
-      return { title, subtitle: labels[subtitle] || subtitle }
+      return { title, subtitle: hidden ? `🙈 已隱藏・${labels[subtitle] || subtitle}` : labels[subtitle] || subtitle }
     },
   },
 })
