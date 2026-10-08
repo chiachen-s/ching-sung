@@ -92,7 +92,7 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <a
-                  href="https://instagram.com/chingsungfarm"
+                  href="https://www.instagram.com/chingsungfarm"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between text-sm text-brand-green font-medium hover:underline"

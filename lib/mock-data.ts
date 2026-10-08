@@ -220,7 +220,7 @@ export const mockProducts: Product[] = [
 ]
 
 export const mockSiteSettings: SiteSettings = {
-  instagramUrl: 'https://instagram.com/chingsungfarm',
+  instagramUrl: 'https://www.instagram.com/chingsungfarm',
   phone: '（電話號碼待填入）',
   address: '（農場地址待填入）',
   serviceArea: '（服務區域待填入）',

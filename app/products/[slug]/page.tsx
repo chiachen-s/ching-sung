@@ -20,7 +20,10 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const product = await getProductBySlug(params.slug)
+  let product = await getProductBySlug(params.slug)
+  if (!product) {
+    product = mockProducts.find((p) => p.slug === params.slug)
+  }
   if (!product) return { title: '找不到商品' }
   return { title: product.name }
 }
