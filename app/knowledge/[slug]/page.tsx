@@ -20,7 +20,10 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const article = await getArticleBySlug(params.slug)
+  let article = await getArticleBySlug(params.slug)
+  if (!article) {
+    article = mockArticles.find((a) => a.slug === params.slug)
+  }
   if (!article) return { title: '找不到文章' }
   return { title: article.title, description: article.excerpt }
 }
