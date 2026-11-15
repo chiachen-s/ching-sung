@@ -3,6 +3,7 @@ export const revalidate = 60
 import { getProducts } from '@/lib/sanity'
 import { mockProducts } from '@/lib/mock-data'
 import ProductCard from '@/components/ProductCard'
+import CategoryFilter from '@/components/CategoryFilter'
 import { ShoppingBasket } from 'lucide-react'
 import type { Product } from '@/types'
 
@@ -44,32 +45,22 @@ export default async function ProductsPage() {
       <section className="py-16 bg-brand-cream">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
-          {/* Filter */}
-          <div className="flex flex-wrap gap-2 mb-10">
-            {[
+          {/* Filter + Products grid */}
+          <CategoryFilter
+            categories={[
               { value: 'all', label: '全部' },
               { value: 'vegetable', label: '🥬 蔬菜' },
               { value: 'rice', label: '🌾 稻米' },
               { value: 'fruit', label: '🍎 水果' },
-            ].map((cat) => (
-              <span
-                key={cat.value}
-                className={`px-4 py-1.5 rounded-full text-sm font-medium cursor-pointer transition-colors ${
-                  cat.value === 'all'
-                    ? 'bg-brand-green text-white'
-                    : 'bg-white text-gray-600 hover:bg-brand-green-pale hover:text-brand-green border border-gray-200'
-                }`}
-              >
-                {cat.label}
-              </span>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((product) => (
-              <ProductCard key={product._id} product={product} />
-            ))}
-          </div>
+            ]}
+            gridClassName="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            emptyText="這個分類目前沒有農產品"
+            items={products.map((product) => ({
+              key: product._id,
+              category: product.category,
+              node: <ProductCard product={product} />,
+            }))}
+          />
 
           {/* How to order */}
           <div className="mt-16 bg-white rounded-2xl p-8">

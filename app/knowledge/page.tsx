@@ -3,6 +3,7 @@ export const revalidate = 60
 import { getArticles } from '@/lib/sanity'
 import { mockArticles } from '@/lib/mock-data'
 import ArticleCard from '@/components/ArticleCard'
+import CategoryFilter from '@/components/CategoryFilter'
 import { BookOpen } from 'lucide-react'
 import { CATEGORY_LABELS, type Article } from '@/types'
 
@@ -41,28 +42,17 @@ export default async function KnowledgePage() {
       <section className="py-16 bg-brand-cream">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
-          {/* Category filter */}
-          <div className="flex flex-wrap gap-2 mb-10">
-            {categories.map((cat) => (
-              <span
-                key={cat.value}
-                className={`px-4 py-1.5 rounded-full text-sm font-medium cursor-pointer transition-colors ${
-                  cat.value === 'all'
-                    ? 'bg-brand-green text-white'
-                    : 'bg-white text-gray-600 hover:bg-brand-green-pale hover:text-brand-green border border-gray-200'
-                }`}
-              >
-                {cat.label}
-              </span>
-            ))}
-          </div>
-
-          {/* Articles grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {articles.map((article) => (
-              <ArticleCard key={article._id} article={article} />
-            ))}
-          </div>
+          {/* Category filter + Articles grid */}
+          <CategoryFilter
+            categories={categories}
+            gridClassName="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            emptyText="這個分類目前還沒有文章"
+            items={articles.map((article) => ({
+              key: article._id,
+              category: article.category,
+              node: <ArticleCard article={article} />,
+            }))}
+          />
 
           {articles.length === 0 && (
             <div className="text-center py-20 text-gray-400">
