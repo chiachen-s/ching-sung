@@ -10,7 +10,7 @@ import { mockArticles } from '@/lib/mock-data'
 import { CATEGORY_LABELS } from '@/types'
 
 interface Props {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
@@ -20,9 +20,10 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  let article = await getArticleBySlug(params.slug)
+  const { slug } = await params
+  let article = await getArticleBySlug(slug)
   if (!article) {
-    article = mockArticles.find((a) => a.slug === params.slug)
+    article = mockArticles.find((a) => a.slug === slug)
   }
   if (!article) return { title: '找不到文章' }
   return { title: article.title, description: article.excerpt }
@@ -36,9 +37,10 @@ const categoryColors: Record<string, string> = {
 }
 
 export default async function ArticlePage({ params }: Props) {
-  let article = await getArticleBySlug(params.slug)
+  const { slug } = await params
+  let article = await getArticleBySlug(slug)
   if (!article) {
-    article = mockArticles.find((a) => a.slug === params.slug)
+    article = mockArticles.find((a) => a.slug === slug)
   }
   if (!article) notFound()
 
