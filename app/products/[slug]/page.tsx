@@ -10,7 +10,7 @@ import { mockProducts } from '@/lib/mock-data'
 import { CATEGORY_LABELS, SEASON_LABELS, STATUS_LABELS } from '@/types'
 
 interface Props {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
@@ -20,9 +20,10 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  let product = await getProductBySlug(params.slug)
+  const { slug } = await params
+  let product = await getProductBySlug(slug)
   if (!product) {
-    product = mockProducts.find((p) => p.slug === params.slug)
+    product = mockProducts.find((p) => p.slug === slug)
   }
   if (!product) return { title: '找不到商品' }
   return { title: product.name }
@@ -35,9 +36,10 @@ const statusStyles: Record<string, { bg: string; text: string; label: string }> 
 }
 
 export default async function ProductPage({ params }: Props) {
-  let product = await getProductBySlug(params.slug)
+  const { slug } = await params
+  let product = await getProductBySlug(slug)
   if (!product) {
-    product = mockProducts.find((p) => p.slug === params.slug)
+    product = mockProducts.find((p) => p.slug === slug)
   }
   if (!product) notFound()
 
